@@ -1,10 +1,13 @@
 module.exports = {
-
-    addPost (req, res) {
-    let newPost = req.body;
-    let id = posts.length;
-    posts.push(newPost);
-    res.status(201).send({id});
-}
+    addPost (req, res, store) {
+        console.log("Prosessing post request");
+        let newPost = req.body;
+        console.log(newPost);
+        let id = store.length;
+        console.log(id);
+        store.posts.push(newPost);
+        console.log(store);
+        res.status(201).send({id});
+    } 
 
 }
