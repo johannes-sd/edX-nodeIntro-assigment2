@@ -27,14 +27,14 @@ let routes = require("./routes/index");
 console.log(routes);
 
 app.get('/posts', (req, res) => {
-    res.status(200).send(posts);
+    // res.status(200).send(posts);
+    routes.post.getPosts(req, res, store);
 });
 
 app.post('/posts', (req, res) => {routes.post.addPost(req, res, store)}); //Passing the store-object.
 
 app.put('/posts/:postId', (req, res) => {
-    store.accounts[req.params.id] = req.body;
-    res.status(200).send(store.accounts[req.params.id]);
+    routes.post.updatePost(req, res, store);
 });
 
 app.delete("/posts/:postId", (req, res) => {
@@ -46,7 +46,7 @@ app.get('/posts/:postId/comments', (req, res) => {
     res.status(200).send(store.accounts);
 });
 
-app.post('/posts/:postId/comments', (req, res) => { routes.post.addComment(req, res, store); });
+app.post('/posts/:postId/comments', (req, res) => { routes.comments.addComment(req, res, store); });
 
 
 app.listen(3000);

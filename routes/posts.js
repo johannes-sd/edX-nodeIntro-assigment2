@@ -1,4 +1,7 @@
 module.exports = {
+    getPosts (req, res, store) {
+        res.status(200).send(store);
+    },
     addPost (req, res, store) {
         let newPost = req.body.posts;
         let id = store.posts.length;
@@ -6,13 +9,8 @@ module.exports = {
         console.log(store);
         res.status(201).send({id});
     },
-
-    addComment (req, res, store) {
-        let postIndex = req.params.postId;
-        let commentIndex = store.posts[postIndex].comments.length;
-        //console.log(store.posts[postIndex].comments);
-        console.log(req.body.posts);
-        store.posts[postIndex].comments.push(req.body);
-        res.status(201).send(store.posts);
+    updatePost (req, res, store) {
+        store.posts[req.params.postId] = req.body;
+        res.status(200).send(store.accounts[req.params.id]);
     }
 }
