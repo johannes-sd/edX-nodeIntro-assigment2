@@ -33,18 +33,11 @@ app.get('/posts', (req, res) => {
 
 app.post('/posts', (req, res) => {routes.post.addPost(req, res, store)}); //Passing the store-object.
 
-app.put('/posts/:postId', (req, res) => {
-    routes.post.updatePost(req, res, store);
-});
+app.put('/posts/:postId', (req, res) => { routes.post.updatePost(req, res, store); });
 
-app.delete("/posts/:postId", (req, res) => {
-    store.accounts.splice(req.params.id, 1);
-    res.status(204).send();
-});
+app.delete("/posts/:postId", (req, res) => { routes.post.deletePost(req, res, store); });
 
-app.get('/posts/:postId/comments', (req, res) => {
-    res.status(200).send(store.accounts);
-});
+app.get('/posts/:postId/comments', (req, res) => {res.status(200).send(store.posts); });
 
 app.post('/posts/:postId/comments', (req, res) => { routes.comments.addComment(req, res, store); });
 

@@ -10,7 +10,16 @@ module.exports = {
         res.status(201).send({id});
     },
     updatePost (req, res, store) {
-        store.posts[req.params.postId] = req.body;
-        res.status(200).send(store.accounts[req.params.id]);
+        let id = req.params.postId;
+        let post = req.body;
+        store.posts[id].name = post.name;
+        store.posts[id].text = post.text;
+        store.posts[id].url = post.url;
+        res.status(200).send(store.posts[id]);
+    },
+    deletePost (req, res) {
+        let id = req.params.postId;
+        store.posts.splice(req.params.id, 1);
+        res.status(204).send();
     }
-}
+} 
