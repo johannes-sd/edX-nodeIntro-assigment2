@@ -19,7 +19,7 @@ module.exports = {
     },
     deletePost (req, res) {
         let id = req.params.postId;
-        store.posts.splice(req.params.id, 1);
+        store.posts.splice(id, 1);
         res.status(204).send();
     }
 } 
