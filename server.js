@@ -26,6 +26,8 @@ app.use(errorHandler());
 let routes = require("./routes/index");
 console.log(routes);
 
+//POSTS-SECTION
+
 app.get('/posts', (req, res) => { routes.post.getPosts(req, res, store); });
 
 app.post('/posts', (req, res) => {routes.post.addPost(req, res, store)}); //Passing the store-object.
@@ -33,6 +35,8 @@ app.post('/posts', (req, res) => {routes.post.addPost(req, res, store)}); //Pass
 app.put('/posts/:postId', (req, res) => { routes.post.updatePost(req, res, store); });
 
 app.delete("/posts/:postId", (req, res) => { routes.post.deletePost(req, res, store); });
+
+//COMMENTS-SECTION
 
 app.get('/posts/:postId/comments', (req, res) => {routes.comments.getComments(req, res, store); });
 
