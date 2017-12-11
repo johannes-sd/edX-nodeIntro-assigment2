@@ -26,10 +26,7 @@ app.use(errorHandler());
 let routes = require("./routes/index");
 console.log(routes);
 
-app.get('/posts', (req, res) => {
-    // res.status(200).send(posts);
-    routes.post.getPosts(req, res, store);
-});
+app.get('/posts', (req, res) => { routes.post.getPosts(req, res, store); });
 
 app.post('/posts', (req, res) => {routes.post.addPost(req, res, store)}); //Passing the store-object.
 
@@ -37,9 +34,12 @@ app.put('/posts/:postId', (req, res) => { routes.post.updatePost(req, res, store
 
 app.delete("/posts/:postId", (req, res) => { routes.post.deletePost(req, res, store); });
 
-app.get('/posts/:postId/comments', (req, res) => {res.status(200).send(store.posts); });
+app.get('/posts/:postId/comments', (req, res) => {routes.comments.getComments(req, res, store); });
 
 app.post('/posts/:postId/comments', (req, res) => { routes.comments.addComment(req, res, store); });
 
+app.put('/posts/:postId/comments/:commentsId', (req, res) => { routes.comments.updateComment(req, res, store); });
+
+app.delete('/posts/:postId/comments/:commentsId', (req, res) => { routes.comments.deleteComment(req, res, store); });
 
 app.listen(3000);
