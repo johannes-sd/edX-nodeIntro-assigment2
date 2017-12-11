@@ -2,10 +2,13 @@ module.exports = {
 
     addComment (req, res, store) {
         let postIndex = req.params.postId;
-        let commentIndex = store.posts[postIndex].comments.length;
-        //console.log(store.posts[postIndex].comments);
-        console.log(req.body.posts);
-        store.posts[postIndex].comments.push(req.body);
+        if(store.posts[postIndex].comments) { //if comments exists, we can go on
+            let commentIndex = store.posts[postIndex].comments.length;
+            store.posts[postIndex].comments.push(req.body);
+        } else { //If comments doesnt exist, define array and add value to first index
+            store.posts[postIndex].comments = [];
+            store.posts[postIndex].comments[0] = req.body; 
+        }
         res.status(201).send(store.posts);
     },
     getComments (req, res, store)  {
