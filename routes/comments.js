@@ -19,9 +19,14 @@ module.exports = {
         let postIndex = req.params.postId;
         let commentIndex = req.params.commentsId;
         console.log(store.posts.length);
-        if(!store.posts[postIndex].comments) {
-            res.status(400).send(`No comments on post with id ${postIndex} found.`);            
-        } else {
+        if(!store.posts[postIndex]) { // If there are no posts to update
+            res.status(400).send(`There is no post with id ${postIndex}`);
+            return;
+        }
+        if(!store.posts[postIndex].comments) { //if the comment does not exist
+            res.status(400).send(`No comments on post with id ${postIndex} found to update.`);
+            return;         
+        } else { //Updating an existing comment
             store.posts[postIndex].comments[commentIndex] = req.body;
             res.status(200).send(store);
         }
