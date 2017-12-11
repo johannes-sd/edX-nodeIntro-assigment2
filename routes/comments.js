@@ -18,8 +18,15 @@ module.exports = {
     updateComment (req, res, store) {
         let postIndex = req.params.postId;
         let commentIndex = req.params.commentsId;
-        store.posts[postIndex].comments[commentIndex] = req.body;
-        res.status(200).send(store);
+        console.log(store.posts.length);
+        if(!store.posts[postIndex].comments) {
+            res.status(400).send(`No comments on post with id ${postIndex} found.`);            
+        } else {
+            store.posts[postIndex].comments[commentIndex] = req.body;
+            res.status(200).send(store);
+        }
+        
+        
     },
     deleteComment (req, res, store) {
         let postIndex = req.params.postId;
