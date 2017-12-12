@@ -12,6 +12,7 @@ I pass the posts-object (store) in all functioncalls on all app.routes to access
 2. How did you test your project to verify that it works? If you used any specific curl requests, let us know.
 Testing is done using Postman and a lot of console-logging. 
 Using windows as enviroment, i found it easier to install a virtual linux distribution to test the curl-commands from the edX-site.
+For development I use Nodemon wich is like the node-dev-package.
 
 3. Let us know if anything doesn't work as intended so your reviewers will know ahead of time
 I have not put in a lot of errorhandling. I test for existing or non-existing objects where I do the updates.
